@@ -1,0 +1,10 @@
+C:\Users\User\Documents\Portfolio\C#\MDIAssignment\MDIAssignment\bin\Debug\MDIAssignment.exe.config
+C:\Users\User\Documents\Portfolio\C#\MDIAssignment\MDIAssignment\bin\Debug\MDIAssignment.exe
+C:\Users\User\Documents\Portfolio\C#\MDIAssignment\MDIAssignment\bin\Debug\MDIAssignment.pdb
+C:\Users\User\Documents\Portfolio\C#\MDIAssignment\MDIAssignment\obj\Debug\MDIAssignment.csprojAssemblyReference.cache
+C:\Users\User\Documents\Portfolio\C#\MDIAssignment\MDIAssignment\obj\Debug\MDIAssignment.Form1.resources
+C:\Users\User\Documents\Portfolio\C#\MDIAssignment\MDIAssignment\obj\Debug\MDIAssignment.Properties.Resources.resources
+C:\Users\User\Documents\Portfolio\C#\MDIAssignment\MDIAssignment\obj\Debug\MDIAssignment.csproj.GenerateResource.cache
+C:\Users\User\Documents\Portfolio\C#\MDIAssignment\MDIAssignment\obj\Debug\MDIAssignment.exe
+C:\Users\User\Documents\Portfolio\C#\MDIAssignment\MDIAssignment\obj\Debug\MDIAssignment.pdb
+C:\Users\User\Documents\Portfolio\C#\MDIAssignment\MDIAssignment\obj\Debug\MDIAssignment.TextDocument.resources
