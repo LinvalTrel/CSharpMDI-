@@ -16,6 +16,11 @@ namespace MultiDocumentInterface_MDI_
         [System.ComponentModel.Browsable(false)]
         public System.Windows.Forms.Form ActiveMdiChild { get; set;  }
 
+        /* 
+         * 
+         *      SAVE FILE OR EXIT FORM 
+         * 
+         */
         public saveOrExit()
         {
             InitializeComponent();

@@ -43,21 +43,20 @@ namespace MultiDocumentInterface_MDI_
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            Form frm = this.ActiveMdiChild;
+            Form frm = this.ActiveMdiChild; // 'frm' variable is for every active form on display 
 
             TextDocument txt = new TextDocument(); 
             SaveFileDialog saveTxtFile = new SaveFileDialog();
-            saveTxtFile.Filter = "Text File |*.txt"; 
+            saveTxtFile.Filter = "Text File |*.txt"; // only files that are .txt can be saved
             
             if (txt.richTextBox1.Text != null)
-            {
-                
+            {               
 
                 if (saveTxtFile.ShowDialog() == DialogResult.OK)
                 {
-                    Stream s = File.Open(saveTxtFile.FileName, FileMode.CreateNew);
+                    Stream s = File.Open(saveTxtFile.FileName, FileMode.CreateNew); 
                     StreamWriter sw = new StreamWriter(s);
-                    sw.Write(txt.richTextBox1.Text); 
+                    sw.Write(txt.richTextBox1.Text); //content written into the text file is saved as a filename by the choice of the user 
 
                 }
             }
@@ -68,31 +67,25 @@ namespace MultiDocumentInterface_MDI_
         {
             TextDocument txtDoc = new TextDocument(); 
             
-            // Write code of text to
             Stream myStream;
 
-            // create new openfiledialog variable 
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
-
-            // create inital directory of where the text file resides 
-            openFileDialog1.InitialDirectory = "C:\\Users\\User\\Documents\\Portfolio\\C#\\MultiDocumentInterface(MDI)\\txt docs";
-            // allowing the openfiledialog box only to open txt files 
+            
+            openFileDialog1.InitialDirectory = "C:\\Users";  // intial directory to open files will be the Users, because local servers differ
+            
             openFileDialog1.Filter = "txt files (*.txt)|*txt";
 
 
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                if ((myStream = openFileDialog1.OpenFile()) != null)
+                if ((myStream = openFileDialog1.OpenFile()) != null) 
                 {
-                   
-                    //set the parent form to te Child window 
-                    txtDoc.MdiParent = this;
+               
+                    txtDoc.MdiParent = this; //set the parent form to te Child window  
                     txtDoc.Show(); 
                     string strfilename = openFileDialog1.FileName;
-                    string filetext = File.ReadAllText(strfilename);
-                    txtDoc.richTextBox1.Text = filetext; 
-
-                    
+                    string filetext = File.ReadAllText(strfilename); 
+                    txtDoc.richTextBox1.Text = filetext;             
 
                 }
             }
@@ -108,7 +101,7 @@ namespace MultiDocumentInterface_MDI_
         {
             TextDocument newText = new TextDocument();
 
-            newText.MdiParent = this;
+            newText.MdiParent = this; 
             newText.Show(); 
 
             if (newText.richTextBox1.Text != null)
@@ -126,7 +119,7 @@ namespace MultiDocumentInterface_MDI_
 
             OpenFileDialog openImage = new OpenFileDialog();
             openImage.Filter = "image file (*.bmp, *.jpeg, *.jpg, *.png)|*.bmp; *.jpeg;  *.jpg;  *.png"; 
-            openImage.InitialDirectory = "C:\\Users\\User\\Documents\\Portfolio\\C#\\MultiDocumentInterface(MDI)\\ImageDocs";
+            openImage.InitialDirectory = "C:\\Users";
 
             if (openImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -135,7 +128,7 @@ namespace MultiDocumentInterface_MDI_
                     imgDoc.MdiParent = this;
                     imgDoc.Show();
 
-                    imgDoc.pictureBox1.Image = new Bitmap(openImage.FileName); 
+                    imgDoc.pictureBox1.Image = new Bitmap(openImage.FileName); // using Bitmap open only images to fill the rich text box 
                     
                 }
             }
@@ -150,33 +143,33 @@ namespace MultiDocumentInterface_MDI_
             SaveFileDialog saveTxtFile = new SaveFileDialog();
             saveTxtFile.Filter = "Text File |*.txt";
 
-            foreach (Form c in this.MdiChildren)
+            foreach (Form c in this.MdiChildren) // child text forms are known as c in this loop 
             {
-                if(c is TextDocument)
+                if(c is TextDocument) // if 'c'(text forms) are open, give user option to save that text file
                 {
                     string message = "would you like to to save this text file?";
-                    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                    MessageBoxButtons buttons = MessageBoxButtons.YesNo; // save or close dialog 
                     string caption = "Save File"; 
                     DialogResult result; 
 
                     result = MessageBox.Show(message, caption, buttons);
                     
-                    if (result == System.Windows.Forms.DialogResult.Yes)
+                    if (result == System.Windows.Forms.DialogResult.Yes) // if user chooses to save form, open save dialog box 
                     {
-                        if (saveTxtFile.ShowDialog() == DialogResult.OK)
 
+                        if (saveTxtFile.ShowDialog() == DialogResult.OK)
                         {
-                            Stream s = File.Open(saveTxtFile.FileName, FileMode.CreateNew);
+                            Stream s = File.Open(saveTxtFile.FileName, FileMode.CreateNew); // create new file to save the form in 
                             StreamWriter sw = new StreamWriter(s);
                             sw.Write(text.richTextBox1.Text);
 
-                            c.Close(); 
+                            c.Close();  // close text form 
                         }
                     }
 
                     else if (result == System.Windows.Forms.DialogResult.No)
                     {
-                        c.Close(); 
+                        c.Close(); // if user chooses not to save the form, close form 
                     }
                 }
 
@@ -199,6 +192,83 @@ namespace MultiDocumentInterface_MDI_
         {
             AboutMe openAbout = new AboutMe();
             openAbout.Show(); 
+
+        }
+
+/************* 
+ 
+      IMAGE TOLL STRIPS
+
+ ***************/ 
+
+        private void toolNewDocument_Click(object sender, EventArgs e)
+        {
+            TextDocument newText = new TextDocument();
+
+            newText.MdiParent = this;
+            newText.Show();
+
+            if (newText.richTextBox1.Text != null)
+            {
+                saveAsToolStripMenuItem.Enabled = true;
+            }
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolOpenDocument_Click(object sender, EventArgs e)
+        {
+            // tool bar option will accept text files and certain image files 
+
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "txt files (*.txt)|*.txt|Image files (*.jpg, *.jpeg, *bmp) | *.jpg, *.jpeg, *bmp ";
+            dialog.InitialDirectory = @"C:\User"; 
+            dialog.Title = "Please select an image or a text file"; 
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+
+        }
+
+        private void toolSaveDocument_Click(object sender, EventArgs e)
+        {
+            Form frm = this.ActiveMdiChild;
+
+            ImageDocument img = new ImageDocument(); 
+            TextDocument txt = new TextDocument();
+            SaveFileDialog saveTxtFile = new SaveFileDialog();
+            saveTxtFile.Filter = "Text File |*.txt";
+
+            if (txt.richTextBox1.Text != null)
+            {
+
+
+                if (saveTxtFile.ShowDialog() == DialogResult.OK)
+                {
+                    Stream s = File.Open(saveTxtFile.FileName, FileMode.CreateNew);
+                    StreamWriter sw = new StreamWriter(s);
+                    sw.Write(txt.richTextBox1.Text);
+
+                }
+            }
+
+           
+        }
+
+        private void toolHelp_Click(object sender, EventArgs e)
+        {
+            AboutMe openAbout = new AboutMe();
+            openAbout.Show();
 
         }
     }

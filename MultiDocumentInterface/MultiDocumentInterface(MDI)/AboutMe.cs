@@ -24,7 +24,7 @@ namespace MultiDocumentInterface_MDI_
 
         private void okClose_Click(object sender, EventArgs e)
         {
-            this.Close(); 
+            this.Close(); // close About Me Form 
         }
     }
 }

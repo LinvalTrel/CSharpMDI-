@@ -16,5 +16,10 @@ namespace MultiDocumentInterface_MDI_
         {
             InitializeComponent();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
